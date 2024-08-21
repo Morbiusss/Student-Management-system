@@ -26,15 +26,31 @@ A React.js application for managing student records with functionalities for add
     npm install
     ```
 
-4. **Start the Development Server**:
+4. **Navigate to the Backend Directory**:
     ```bash
-    npm start
+    cd backend
     ```
 
-## Usage
+5. **Install Backend Dependencies**:
+    ```bash
+    npm install
+    ```
 
-- Open your browser and navigate to `http://localhost:3000` to use the application.
+6. **Run the Application**:
+   - **Start the Express server**:
+     ```bash
+     node server.js
+     ```
+   - **In a new terminal, navigate back to the React project directory**:
+     ```bash
+     cd ../student-management-portal
+     ```
+   - **Start the React app**:
+     ```bash
+     npm start
+     ```
 
-
+7. **Open Your Browser**:
+    - Navigate to `http://localhost:3000` to use the application.
 
 
