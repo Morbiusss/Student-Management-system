@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Container, Typography } from '@mui/material';
+import StudentForm from './components/StudentForm';
+import StudentList from './components/StudentList';
+import { getStudents } from './studentService';
 
-function App() {
+const App = () => {
+  const [students, setStudents] = useState([]);
+  const [currentStudent, setCurrentStudent] = useState(null);
+
+  const refreshList = async () => {
+    const { data } = await getStudents();
+    setStudents(data);
+  };
+
+  useEffect(() => {
+    refreshList();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="md">
+      <Typography variant="h4" align="center" gutterBottom style={{ marginTop: 20 }}>
+        Student Management Portal
+      </Typography>
+      <StudentForm currentStudent={currentStudent} setCurrentStudent={setCurrentStudent} refreshList={refreshList} />
+      <StudentList students={students} setCurrentStudent={setCurrentStudent} refreshList={refreshList} />
+    </Container>
   );
-}
+};
 
 export default App;
